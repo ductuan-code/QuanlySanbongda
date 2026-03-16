@@ -1,43 +1,75 @@
-Đề tài : XÂY DỰNG HỆ THỐNG WEBSITE ĐẶT LỊCH VÀ QUẢN LÝ SÂN BÓNG ĐÁ 
-1. Giới thiệu đề tài
-Trong thời đại công nghệ số, nhu cầu tìm kiếm và đặt lịch sử dụng các dịch vụ thể thao trực tuyến ngày càng tăng cao. Đặc biệt, đối với môn bóng đá phong trào, việc tìm kiếm sân trống và đặt sân theo khung giờ phù hợp vẫn còn nhiều khó khăn và phụ thuộc vào hình thức liên hệ thủ công.
-Vì vậy, việc xây dựng một hệ thống website đặt lịch và quản lý sân bóng đá trực tuyến là cần thiết nhằm hỗ trợ người chơi dễ dàng tìm kiếm, đặt sân cũng như giúp chủ sân quản lý hoạt động kinh doanh hiệu quả hơn.
-2. Mục tiêu của hệ thống
-Hệ thống được xây dựng nhằm:
-•	Cung cấp nền tảng cho người dùng tìm kiếm và đặt sân bóng theo thời gian thực
-•	Hỗ trợ quản lý thông tin sân bóng, lịch đặt và người dùng
-•	Giúp chủ sân theo dõi doanh thu và tình trạng sử dụng sân
-•	Nâng cao tính tiện lợi và tự động hóa trong việc quản lý dịch vụ thể thao
-3. Đối tượng sử dụng
-Hệ thống hướng tới các đối tượng sau:
-•	Người chơi bóng có nhu cầu tìm và đặt sân
-•	Chủ sân bóng muốn quản lý lịch đặt và hoạt động kinh doanh
-•	Quản trị viên hệ thống
-4. Chức năng chính của hệ thống
-4.1. Chức năng dành cho người dùng
-•	Đăng ký và đăng nhập tài khoản
-•	Tìm kiếm sân bóng theo tên hoặc khu vực
-•	Xem thông tin chi tiết sân bóng
-•	Xem lịch trống theo ngày và khung giờ
-•	Đặt lịch sử dụng sân
-•	Hủy lịch đặt khi cần thiết
-•	Xem lịch sử các lần đặt sân
-•	Đánh giá và nhận xét sân bóng
-4.2. Chức năng dành cho chủ sân
-•	Quản lý thông tin sân bóng
-•	Thiết lập khung giờ hoạt động
-•	Cấu hình giá thuê theo từng khung giờ
-•	Theo dõi danh sách các lịch đặt
-•	Xem báo cáo doanh thu
-4.3. Chức năng dành cho quản trị viên
-•	Quản lý tài khoản người dùng
-•	Quản lý danh sách sân bóng trên hệ thống
-•	Thống kê số lượt đặt sân
-•	Thống kê doanh thu tổng thể
-•	Quản lý và xử lý các phản hồi của người dùng
-5. Ý nghĩa thực tiễn của đề tài
-Hệ thống giúp nâng cao hiệu quả quản lý và khai thác sân bóng, đồng thời mang lại sự thuận tiện cho người chơi trong việc tìm kiếm và đặt lịch. Bên cạnh đó, đề tài giúp sinh viên vận dụng kiến thức về lập trình web, thiết kế cơ sở dữ liệu, xây dựng hệ thống backend và phát triển giao diện người dùng.
-6. Dự kiến công nghệ sử dụng
-•	Frontend: HTML, CSS, JavaScript hoặc Framework frontend
-•	Backend: Công nghệ lập trình web server
-•	Database: Hệ quản trị cơ sở dữ liệu quan hệ
+# ⚽ HỆ THỐNG WEBSITE ĐẶT LỊCH VÀ QUẢN LÝ SÂN BÓNG
+
+## 📌 Giới thiệu
+Đây là hệ thống website cho phép người dùng tìm kiếm, xem lịch trống và đặt sân bóng đá trực tuyến.  
+Hệ thống giúp chủ sân quản lý lịch đặt, theo dõi hoạt động kinh doanh và hỗ trợ quản trị viên quản lý toàn bộ dữ liệu trên hệ thống.
+
+Đề tài được xây dựng nhằm áp dụng các kiến thức về phát triển web fullstack, thiết kế cơ sở dữ liệu và xây dựng hệ thống quản lý dịch vụ thực tế.
+
+---
+
+## 🎯 Mục tiêu của hệ thống
+- Xây dựng nền tảng đặt sân bóng trực tuyến  
+- Hỗ trợ quản lý lịch đặt sân hiệu quả  
+- Quản lý thông tin người dùng và sân bóng  
+- Thống kê và theo dõi hoạt động sử dụng sân  
+
+---
+
+## 👥 Đối tượng sử dụng
+
+### 👤 Người dùng
+- Đăng ký và đăng nhập tài khoản  
+- Xem danh sách và thông tin chi tiết sân bóng  
+- Xem lịch trống theo ngày và khung giờ  
+- Đặt lịch sử dụng sân  
+- Hủy lịch đặt  
+- Xem lịch sử đặt sân  
+
+### 🛠️ Quản trị viên
+- Thêm, sửa, xoá thông tin sân bóng  
+- Quản lý tài khoản người dùng  
+- Quản lý lịch đặt sân  
+- Xem thống kê hoạt động hệ thống  
+
+---
+
+## ⚙️ Chức năng chính
+- Xác thực và phân quyền người dùng  
+- Quản lý thông tin sân bóng  
+- Quản lý đặt sân theo khung giờ  
+- Kiểm tra trùng lịch đặt sân  
+- Thống kê và báo cáo cơ bản  
+- Giao diện thân thiện, hỗ trợ nhiều thiết bị  
+
+---
+
+## 🗄️ Thiết kế cơ sở dữ liệu (cơ bản)
+- Users  
+- Roles  
+- FootballFields  
+- Bookings  
+- Payments  
+
+---
+
+## 🛠️ Công nghệ sử dụng
+- Frontend: HTML, CSS, JavaScript  
+- Backend: (Công nghệ bạn sử dụng)  
+- Database: SQL Server / MySQL  
+
+---
+
+## 🚀 Hướng phát triển trong tương lai
+- Tích hợp thanh toán trực tuyến  
+- Gửi thông báo email khi đặt sân  
+- Tìm kiếm sân theo vị trí trên bản đồ  
+- Hệ thống đánh giá và nhận xét sân bóng  
+- Phát triển ứng dụng di động  
+
+---
+
+## 👨‍💻 Thông tin sinh viên thực hiện
+- Họ tên: Nguyễn Đức Tuấn  
+- Ngành học: Công nghệ Web  
+- Môn học: Lập trình Web
