@@ -4,13 +4,13 @@
 Hệ thống website đặt lịch và quản lý sân bóng được xây dựng nhằm hỗ trợ người dùng tìm kiếm, xem lịch trống và đặt sân bóng đá trực tuyến một cách nhanh chóng và thuận tiện.
 Bên cạnh đó, hệ thống còn giúp chủ sân quản lý lịch đặt, theo dõi hoạt động kinh doanh và hỗ trợ quản trị viên giám sát toàn bộ dữ liệu cũng như hoạt động của hệ thống.
 Đề tài được thực hiện nhằm áp dụng các kiến thức về phát triển ứng dụng web fullstack, thiết kế cơ sở dữ liệu và xây dựng hệ thống quản lý dịch vụ thực tế.
----
+
 ## Mục tiêu của hệ thống
 - Xây dựng nền tảng đặt sân bóng trực tuyến  
 - Hỗ trợ quản lý lịch đặt sân hiệu quả  
 - Quản lý thông tin người dùng và sân bóng  
 - Thống kê và theo dõi hoạt động sử dụng sân  
----
+
 ## Các vai trò trong hệ thống
 ### Người dùng
 - Đăng ký và đăng nhập tài khoản  
@@ -32,7 +32,7 @@ Bên cạnh đó, hệ thống còn giúp chủ sân quản lý lịch đặt, t
 - Quản lý tài khoản người dùng và chủ sân  
 - Quản lý lịch đặt sân  
 - Theo dõi và thống kê hoạt động toàn hệ thống  
----
+
 ## Chức năng chính
 - Xác thực và phân quyền người dùng  
 - Quản lý thông tin sân bóng  
@@ -40,7 +40,7 @@ Bên cạnh đó, hệ thống còn giúp chủ sân quản lý lịch đặt, t
 - Kiểm tra và xử lý trùng lịch đặt sân  
 - Thống kê và báo cáo hoạt động  
 - Giao diện thân thiện, hỗ trợ nhiều thiết bị  
----
+
 ## Thiết kế cơ sở dữ liệu (dự kiến)
 - Users  
 - Roles  
@@ -49,19 +49,19 @@ Bên cạnh đó, hệ thống còn giúp chủ sân quản lý lịch đặt, t
 - TimeSlots  
 - Bookings  
 - Payments  
----
+
 ## Công nghệ sử dụng
 - Frontend: HTML, CSS, JavaScript  
 - Backend: ASP.NET  
 - Database: SQL Server  
----
+
 ## Hướng phát triển trong tương lai
 - Tích hợp thanh toán trực tuyến  
 - Gửi thông báo email khi đặt sân  
 - Tìm kiếm sân theo vị trí bản đồ  
 - Hệ thống đánh giá và nhận xét sân  
 - Phát triển ứng dụng di động  
----
+
 ## Thông tin sinh viên thực hiện
 - Họ tên: Nguyễn Đức Tuấn  
 - Ngành học: Công nghệ Web  
