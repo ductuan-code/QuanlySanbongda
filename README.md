@@ -34,21 +34,67 @@ Bên cạnh đó, hệ thống còn giúp chủ sân quản lý lịch đặt, t
 - Theo dõi và thống kê hoạt động toàn hệ thống  
 
 ## Chức năng chính
-- Xác thực và phân quyền người dùng  
-- Quản lý thông tin sân bóng  
-- Quản lý đặt sân theo khung giờ  
-- Kiểm tra và xử lý trùng lịch đặt sân  
-- Thống kê và báo cáo hoạt động  
-- Giao diện thân thiện, hỗ trợ nhiều thiết bị  
+#User
+-Quản lý tài khoản
+Đăng ký
+Đăng nhập / Đăng xuất
+Cập nhật thông tin cá nhân
+Đổi mật khẩu
+-Tìm kiếm và xem sân
+Xem danh sách sân
+Xem chi tiết sân
+Tìm kiếm theo khu vực
+Lọc theo giá
+Lọc theo loại sân
+Xem lịch trống theo ngày
+-Đặt sân
+Chọn ngày
+Chọn khung giờ
+Chọn thời lượng
+Tạo booking
+-Thanh toán
+Thanh toán online
+Thanh toán tại sân
+Xem trạng thái thanh toán
+-Quản lý booking
+Xem danh sách booking
+Hủy booking
+Xem lịch sử đặt sân
+#Field Owner
+-Quản lý sân
+Thêm sân
+Sửa thông tin sân
+Upload ảnh sân
+Thiết lập loại sân
+-Quản lý lịch hoạt động
+Thiết lập giờ mở cửa
+Block sân theo ngày hoặc giờ
+Điều chỉnh giá theo khung giờ
+-Quản lý booking
+Xem danh sách booking
+Xác nhận booking
+Từ chối booking
+Check-in khách
+Cập nhật trạng thái hoàn thành
+#Admin
+-Quản lý user
+Xem danh sách user
+Khóa hoặc mở tài khoản
+Phân quyền
+-Quản lý sân
+Duyệt sân mới
+Xóa sân
+Giám sát hoạt động sân
+-Báo cáo thống kê
+Doanh thu theo thời gian
+Số lượng booking
+Tỷ lệ sử dụng sân
+-Cấu hình hệ thống
+Thiết lập quy định đặt sân
+Thiết lập thời gian giữ chỗ
+Thiết lập giá mặc định
 
-## Thiết kế cơ sở dữ liệu (dự kiến)
-- Users  
-- Roles  
-- Owners  
-- FootballFields  
-- TimeSlots  
-- Bookings  
-- Payments  
+
 
 ## Công nghệ sử dụng
 - Frontend: HTML, CSS, JavaScript  
