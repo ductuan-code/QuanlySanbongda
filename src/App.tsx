@@ -3,6 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { BookingProvider } from './contexts/BookingContext';
 import MainLayout from './layouts/MainLayout';
 import AdminLayout from './layouts/AdminLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import FieldListPage from './pages/FieldListPage';
 import FieldDetailPage from './pages/FieldDetailPage';
@@ -27,11 +28,19 @@ function App() {
               <Route path="fields/:id" element={<FieldDetailPage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
-              <Route path="my-bookings" element={<MyBookingsPage />} />
+              <Route path="my-bookings" element={
+                <ProtectedRoute>
+                  <MyBookingsPage />
+                </ProtectedRoute>
+              } />
             </Route>
 
-            {/* Admin Routes */}
-            <Route path="/admin" element={<AdminLayout />}>
+            {/* Admin Routes - Protected */}
+            <Route path="/admin" element={
+              <ProtectedRoute requireAdmin>
+                <AdminLayout />
+              </ProtectedRoute>
+            }>
               <Route index element={<AdminDashboard />} />
               <Route path="fields" element={<ManageFields />} />
               <Route path="users" element={<ManageUsers />} />
