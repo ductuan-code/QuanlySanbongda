@@ -1,4 +1,4 @@
-import { Layout, Menu, Button, Dropdown } from "antd";
+import { Layout, Menu, Button, Dropdown, Badge } from "antd";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { 
   HomeOutlined, 
@@ -7,11 +7,12 @@ import {
   LoginOutlined,
   UserAddOutlined,
   UserOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  BellOutlined
 } from '@ant-design/icons';
 import { useAuth } from '../contexts/AuthContext';
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Header, Content, Footer } = Layout;
 
 export default function MainLayout() {
   const navigate = useNavigate();
@@ -42,81 +43,173 @@ export default function MainLayout() {
       key: 'logout',
       icon: <LogoutOutlined />,
       label: 'Đăng xuất',
-      onClick: handleLogout
+      onClick: handleLogout,
+      danger: true
     },
   ];
 
   const menuItems = [
     { key: '/', label: 'Trang chủ', icon: <HomeOutlined /> },
     { key: '/fields', label: 'Danh sách sân', icon: <UnorderedListOutlined /> },
-    { key: '/my-bookings', label: 'Lịch đặt của tôi', icon: <CalendarOutlined /> },
-    ...(!isAuthenticated ? [
-      { key: '/login', label: 'Đăng nhập', icon: <LoginOutlined /> },
-      { key: '/register', label: 'Đăng ký', icon: <UserAddOutlined /> },
-    ] : [])
+    { key: '/my-bookings', label: 'Lịch đặt', icon: <CalendarOutlined /> },
   ];
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider breakpoint="lg" collapsedWidth="0">
-        <div style={{ 
-          color: "white", 
-          padding: 20, 
-          fontSize: 18,
-          fontWeight: 'bold',
-          textAlign: 'center'
+    <Layout style={{ minHeight: "100vh", background: '#F9FAFB' }}>
+      {/* Sticky Header with Glassmorphism */}
+      <Header 
+        className="glass-effect"
+        style={{ 
+          position: 'sticky',
+          top: 0,
+          zIndex: 1000,
+          width: '100%',
+          padding: '0 48px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+          borderBottom: '1px solid rgba(16, 185, 129, 0.1)'
         }}>
-          ⚽ Football
+        {/* Logo */}
+        <div 
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            cursor: 'pointer'
+          }}
+          onClick={() => navigate('/')}
+        >
+          <div style={{
+            background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+            padding: '8px 12px',
+            borderRadius: 12,
+            marginRight: 12
+          }}>
+            <span style={{ fontSize: 20, fontWeight: 'bold' }}>⚽</span>
+          </div>
+          <span style={{ 
+            fontSize: 20, 
+            fontWeight: 'bold',
+            background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            FootballPro
+          </span>
         </div>
 
+        {/* Center Menu */}
         <Menu
-          theme="dark"
-          mode="inline"
+          mode="horizontal"
           selectedKeys={[location.pathname]}
           items={menuItems}
           onClick={({ key }) => navigate(key)}
+          style={{ 
+            flex: 1,
+            justifyContent: 'center',
+            border: 'none',
+            background: 'transparent',
+            fontWeight: 500
+          }}
         />
-      </Sider>
 
-      <Layout>
-        <Header style={{ 
-          background: "#fff", 
-          paddingLeft: 20,
-          paddingRight: 20,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <div style={{ fontSize: 20, fontWeight: 'bold' }}>
-            Hệ Thống Đặt Sân Bóng
-          </div>
-
+        {/* Right Actions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           {isAuthenticated && user ? (
-            <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
-              <Button type="text" icon={<UserOutlined />}>
-                {user.name}
-              </Button>
-            </Dropdown>
+            <>
+              <Badge count={3} size="small">
+                <Button 
+                  type="text" 
+                  icon={<BellOutlined style={{ fontSize: 18 }} />}
+                  shape="circle"
+                  size="large"
+                />
+              </Badge>
+              
+              <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+                <Button 
+                  type="text"
+                  style={{ 
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    height: 40,
+                    padding: '0 16px',
+                    borderRadius: 12,
+                    fontWeight: 500
+                  }}
+                >
+                  <div style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontWeight: 'bold'
+                  }}>
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <span>{user.name}</span>
+                </Button>
+              </Dropdown>
+            </>
           ) : (
-            <div>
-              <Button onClick={() => navigate('/login')} style={{ marginRight: 8 }}>
+            <>
+              <Button 
+                onClick={() => navigate('/login')}
+                style={{ 
+                  borderRadius: 12,
+                  fontWeight: 500
+                }}
+              >
                 Đăng nhập
               </Button>
-              <Button type="primary" onClick={() => navigate('/register')}>
+              <Button 
+                type="primary" 
+                onClick={() => navigate('/register')}
+                style={{ 
+                  borderRadius: 12,
+                  fontWeight: 600
+                }}
+              >
                 Đăng ký
               </Button>
-            </div>
+            </>
           )}
-        </Header>
+        </div>
+      </Header>
 
-        <Content style={{ margin: 24 }}>
-          <Outlet />
-        </Content>
+      <Content style={{ padding: '32px 48px', minHeight: 'calc(100vh - 134px)' }}>
+        <Outlet />
+      </Content>
 
-        <Footer style={{ textAlign: 'center' }}>
-          Football Booking System ©2026 - Nguyễn Đức Tuấn
-        </Footer>
-      </Layout>
+      <Footer style={{ 
+        textAlign: 'center',
+        background: 'white',
+        borderTop: '1px solid #e5e7eb',
+        padding: '24px 48px'
+      }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ marginBottom: 16 }}>
+            <span style={{ 
+              fontSize: 18, 
+              fontWeight: 'bold',
+              background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>
+              FootballPro
+            </span>
+          </div>
+          <div style={{ color: '#6b7280', fontSize: 14 }}>
+            © 2026 FootballPro. Hệ thống đặt sân bóng thông minh.
+          </div>
+        </div>
+      </Footer>
     </Layout>
   );
 }

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #F9FAFB;
 }
 
 code {
@@ -14,9 +15,128 @@ code {
 
 /* Highlight selected time slot row */
 .selected-row {
-  background-color: #e6f7ff !important;
+  background-color: #d1fae5 !important;
+  border-left: 3px solid #10B981 !important;
 }
 
 .selected-row:hover {
-  background-color: #bae7ff !important;
+  background-color: #a7f3d0 !important;
+}
+
+/* Soft UI - Bo góc lớn cho các components */
+.ant-card {
+  border-radius: 16px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.3s ease;
+}
+
+.ant-card:hover {
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+.ant-btn-primary {
+  background: #10B981 !important;
+  border-color: #10B981 !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2) !important;
+}
+
+.ant-btn-primary:hover {
+  background: #059669 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3) !important;
+}
+
+.ant-btn {
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+}
+
+.ant-input,
+.ant-input-password,
+.ant-picker,
+.ant-select-selector {
+  border-radius: 12px !important;
+}
+
+.ant-table {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+/* Glassmorphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Badge styles */
+.badge-hot {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-discount {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Card image zoom effect */
+.card-image-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.card-image-wrapper img {
+  transition: transform 0.4s ease;
+}
+
+.card-image-wrapper:hover img {
+  transform: scale(1.1);
+}
+
+/* Sticky sidebar */
+.sticky-sidebar {
+  position: sticky;
+  top: 24px;
+}
+
+/* Time slot grid */
+.time-slot-available {
+  border: 2px solid #10B981;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-slot-available:hover {
+  background: #d1fae5;
+  transform: scale(1.02);
+}
+
+.time-slot-booked {
+  background: #f3f4f6;
+  color: #9ca3af;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.time-slot-selected {
+  background: #10B981;
+  color: white;
+  border: 2px solid #059669;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
