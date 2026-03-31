@@ -18,7 +18,7 @@ const { Header, Content, Footer } = Layout;
 export default function MainLayout() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { user, isAuthenticated, isAdmin, isOwner, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -37,10 +37,18 @@ export default function MainLayout() {
       label: 'Lịch đặt của tôi',
       onClick: () => navigate('/my-bookings')
     },
-    ...(isAdmin ? [
+    ...(isOwner || isAdmin ? [
       {
         type: 'divider' as const,
       },
+      {
+        key: 'owner',
+        icon: <DashboardOutlined />,
+        label: 'Owner Panel',
+        onClick: () => navigate('/owner')
+      }
+    ] : []),
+    ...(isAdmin ? [
       {
         key: 'admin',
         icon: <DashboardOutlined />,
