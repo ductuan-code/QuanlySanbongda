@@ -27,10 +27,17 @@ export default function FieldListPage() {
           value={district}
           onChange={setDistrict}
         >
-          <Select.Option value="all">Tất cả quận</Select.Option>
-          <Select.Option value="Quận 1">Quận 1</Select.Option>
-          <Select.Option value="Phú Nhuận">Phú Nhuận</Select.Option>
-          <Select.Option value="Tân Bình">Tân Bình</Select.Option>
+          <Select.Option value="all">Tất cả huyện/thành phố</Select.Option>
+          <Select.Option value="TP Hưng Yên">TP Hưng Yên</Select.Option>
+          <Select.Option value="Văn Lâm">Văn Lâm</Select.Option>
+          <Select.Option value="Văn Giang">Văn Giang</Select.Option>
+          <Select.Option value="Yên Mỹ">Yên Mỹ</Select.Option>
+          <Select.Option value="Ân Thi">Ân Thi</Select.Option>
+          <Select.Option value="Khoái Châu">Khoái Châu</Select.Option>
+          <Select.Option value="Mỹ Hào">Mỹ Hào</Select.Option>
+          <Select.Option value="Tiên Lữ">Tiên Lữ</Select.Option>
+          <Select.Option value="Phù Cừ">Phù Cừ</Select.Option>
+          <Select.Option value="Kim Động">Kim Động</Select.Option>
         </Select>
 
         <Select

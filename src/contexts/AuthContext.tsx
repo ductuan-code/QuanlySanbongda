@@ -59,6 +59,45 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
+    // 🎯 DEMO ACCOUNTS - Tài khoản demo tạm thời
+    const demoAccounts = {
+      'admin@demo.com': {
+        id: 'demo-admin',
+        email: 'admin@demo.com',
+        name: 'Admin Demo',
+        phone: '0123456789',
+        role: 'admin' as const,
+        password: 'admin123'
+      },
+      'owner@demo.com': {
+        id: 'demo-owner',
+        email: 'owner@demo.com', 
+        name: 'Chủ Sân Demo',
+        phone: '0987654321',
+        role: 'owner' as const,
+        password: 'owner123'
+      },
+      'user@demo.com': {
+        id: 'demo-user',
+        email: 'user@demo.com',
+        name: 'User Demo', 
+        phone: '0555666777',
+        role: 'user' as const,
+        password: 'user123'
+      }
+    };
+
+    // Kiểm tra tài khoản demo trước
+    const demoAccount = demoAccounts[email as keyof typeof demoAccounts];
+    if (demoAccount && password === demoAccount.password) {
+      setUser(demoAccount);
+      localStorage.setItem('authToken', `demo-token-${demoAccount.role}`);
+      localStorage.setItem('currentUser', JSON.stringify(demoAccount));
+      message.success(`Đăng nhập demo thành công! Role: ${demoAccount.role.toUpperCase()}`);
+      return true;
+    }
+
+    // Nếu không phải demo account, gọi API thật
     try {
       setLoading(true);
       const response = await authAPI.login({ email, password });

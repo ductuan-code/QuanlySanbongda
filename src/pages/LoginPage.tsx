@@ -150,6 +150,25 @@ export default function LoginPage() {
           <Title level={2} style={{ marginBottom: 8 }}>Đăng nhập</Title>
           <Text type="secondary">Chào mừng bạn trở lại! Vui lòng đăng nhập.</Text>
 
+          {/* Demo Accounts Info */}
+          <div style={{
+            background: '#f0f9ff',
+            border: '1px solid #0ea5e9',
+            borderRadius: 8,
+            padding: 16,
+            marginTop: 16,
+            marginBottom: 16
+          }}>
+            <Text strong style={{ color: '#0369a1', display: 'block', marginBottom: 8 }}>
+              🎯 Tài khoản Demo:
+            </Text>
+            <div style={{ fontSize: 12, color: '#0369a1' }}>
+              <div><strong>Admin:</strong> admin@demo.com / admin123</div>
+              <div><strong>Owner:</strong> owner@demo.com / owner123</div>
+              <div><strong>User:</strong> user@demo.com / user123</div>
+            </div>
+          </div>
+
           <Spin spinning={loading}>
             <Form
               form={form}

@@ -3,11 +3,11 @@ import { FootballField, TimeSlot, Booking } from '../types';
 export const mockFields: FootballField[] = [
   {
     id: '1',
-    name: 'Sân Bóng Thể Thao Quận 1',
-    address: '123 Nguyễn Huệ, Quận 1',
-    district: 'Quận 1',
+    name: 'Sân Bóng Thể Thao Hưng Yên',
+    address: '123 Nguyễn Văn Linh, TP Hưng Yên',
+    district: 'TP Hưng Yên',
     fieldType: '5v5',
-    pricePerHour: 300000,
+    pricePerHour: 200000,
     images: [
       'https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=800',
       'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800'
@@ -19,11 +19,11 @@ export const mockFields: FootballField[] = [
   },
   {
     id: '2',
-    name: 'Sân Bóng Phú Nhuận',
-    address: '456 Phan Xích Long, Phú Nhuận',
-    district: 'Phú Nhuận',
+    name: 'Sân Bóng Văn Lâm',
+    address: '456 Đường Lê Lợi, Văn Lâm',
+    district: 'Văn Lâm',
     fieldType: '7v7',
-    pricePerHour: 500000,
+    pricePerHour: 350000,
     images: [
       'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800'
     ],
@@ -34,26 +34,26 @@ export const mockFields: FootballField[] = [
   },
   {
     id: '3',
-    name: 'Sân Bóng Tân Bình',
-    address: '789 Cộng Hòa, Tân Bình',
-    district: 'Tân Bình',
+    name: 'Sân Bóng Văn Giang',
+    address: '789 Quốc Lộ 5, Văn Giang',
+    district: 'Văn Giang',
     fieldType: '5v5',
-    pricePerHour: 250000,
+    pricePerHour: 180000,
     images: [
       'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800'
     ],
-    description: 'Giá rẻ, chất lượng tốt, gần sân bay',
+    description: 'Giá rẻ, chất lượng tốt, gần trung tâm huyện',
     amenities: ['Đèn chiếu sáng', 'Bãi đỗ xe'],
     rating: 4.2,
     ownerId: 'owner1'
   },
   {
     id: '4',
-    name: 'Sân Bóng Bình Thạnh',
-    address: '234 Xô Viết Nghệ Tĩnh, Bình Thạnh',
-    district: 'Bình Thạnh',
+    name: 'Sân Bóng Yên Mỹ',
+    address: '234 Đường Trần Phú, Yên Mỹ',
+    district: 'Yên Mỹ',
     fieldType: '7v7',
-    pricePerHour: 450000,
+    pricePerHour: 300000,
     images: [
       'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800'
     ],
@@ -64,41 +64,41 @@ export const mockFields: FootballField[] = [
   },
   {
     id: '5',
-    name: 'Sân Bóng Thủ Đức',
-    address: '567 Võ Văn Ngân, Thủ Đức',
-    district: 'Thủ Đức',
+    name: 'Sân Bóng Ân Thi',
+    address: '567 Đường Hùng Vương, Ân Thi',
+    district: 'Ân Thi',
     fieldType: '5v5',
-    pricePerHour: 280000,
+    pricePerHour: 170000,
     images: [
       'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800'
     ],
-    description: 'Gần khu đại học, giá sinh viên, sân mới xây',
+    description: 'Gần trường học, giá học sinh, sân mới xây',
     amenities: ['Đèn chiếu sáng', 'Phòng thay đồ', 'Bãi đỗ xe'],
     rating: 4.3,
     ownerId: 'owner1'
   },
   {
     id: '6',
-    name: 'Sân Bóng Quận 3',
-    address: '890 Điện Biên Phủ, Quận 3',
-    district: 'Quận 3',
+    name: 'Sân Bóng Khoái Châu',
+    address: '890 Đường Nguyễn Trãi, Khoái Châu',
+    district: 'Khoái Châu',
     fieldType: '5v5',
-    pricePerHour: 320000,
+    pricePerHour: 190000,
     images: [
       'https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=800'
     ],
-    description: 'Trung tâm thành phố, tiện di chuyển, cỏ nhân tạo cao cấp',
+    description: 'Trung tâm huyện, tiện di chuyển, cỏ nhân tạo cao cấp',
     amenities: ['Đèn chiếu sáng', 'Phòng thay đồ', 'Nước uống', 'Wifi'],
     rating: 4.6,
     ownerId: 'owner2'
   },
   {
     id: '7',
-    name: 'Sân Bóng Gò Vấp',
-    address: '123 Quang Trung, Gò Vấp',
-    district: 'Gò Vấp',
+    name: 'Sân Bóng Mỹ Hào',
+    address: '123 Đường Lý Thường Kiệt, Mỹ Hào',
+    district: 'Mỹ Hào',
     fieldType: '7v7',
-    pricePerHour: 480000,
+    pricePerHour: 320000,
     images: [
       'https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800'
     ],
@@ -109,41 +109,41 @@ export const mockFields: FootballField[] = [
   },
   {
     id: '8',
-    name: 'Sân Bóng Quận 7',
-    address: '456 Nguyễn Thị Thập, Quận 7',
-    district: 'Quận 7',
+    name: 'Sân Bóng Tiên Lữ',
+    address: '456 Đường Hoàng Hoa Thám, Tiên Lữ',
+    district: 'Tiên Lữ',
     fieldType: '5v5',
-    pricePerHour: 350000,
+    pricePerHour: 160000,
     images: [
       'https://images.unsplash.com/photo-1624880357913-a8539238245b?w=800'
     ],
-    description: 'Khu Phú Mỹ Hưng, sân đẹp, tiện nghi hiện đại',
-    amenities: ['Đèn chiếu sáng', 'Phòng thay đồ', 'Bãi đỗ xe', 'Nước uống', 'Wifi', 'Điều hòa'],
+    description: 'Sân mới, tiện nghi hiện đại, giá cả phải chăng',
+    amenities: ['Đèn chiếu sáng', 'Phòng thay đồ', 'Bãi đỗ xe', 'Nước uống', 'Wifi'],
     rating: 4.8,
     ownerId: 'owner2'
   },
   {
     id: '9',
-    name: 'Sân Bóng Quận 10',
-    address: '789 Ba Tháng Hai, Quận 10',
-    district: 'Quận 10',
+    name: 'Sân Bóng Phù Cừ',
+    address: '789 Đường Hai Bà Trưng, Phù Cừ',
+    district: 'Phù Cừ',
     fieldType: '5v5',
-    pricePerHour: 270000,
+    pricePerHour: 150000,
     images: [
       'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800'
     ],
-    description: 'Giá tốt, chất lượng ổn, phù hợp đá thường xuyên',
+    description: 'Giá tốt nhất tỉnh, chất lượng ổn, phù hợp đá thường xuyên',
     amenities: ['Đèn chiếu sáng', 'Phòng thay đồ', 'Bãi đỗ xe'],
     rating: 4.1,
     ownerId: 'owner1'
   },
   {
     id: '10',
-    name: 'Sân Bóng Quận 12',
-    address: '234 Tô Ký, Quận 12',
-    district: 'Quận 12',
+    name: 'Sân Bóng Kim Động',
+    address: '234 Đường Lê Duẩn, Kim Động',
+    district: 'Kim Động',
     fieldType: '7v7',
-    pricePerHour: 420000,
+    pricePerHour: 280000,
     images: [
       'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800'
     ],
@@ -154,11 +154,11 @@ export const mockFields: FootballField[] = [
   },
   {
     id: '11',
-    name: 'Sân Bóng Bình Tân',
-    address: '567 Lê Văn Quới, Bình Tân',
-    district: 'Bình Tân',
+    name: 'Sân Bóng Đông Mỹ',
+    address: '567 Đường Phan Chu Trinh, Đông Mỹ',
+    district: 'Đông Mỹ',
     fieldType: '5v5',
-    pricePerHour: 260000,
+    pricePerHour: 140000,
     images: [
       'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800'
     ],
@@ -169,11 +169,11 @@ export const mockFields: FootballField[] = [
   },
   {
     id: '12',
-    name: 'Sân Bóng Tân Phú',
-    address: '890 Lũy Bán Bích, Tân Phú',
-    district: 'Tân Phú',
+    name: 'Sân Bóng Văn Lâm Center',
+    address: '890 Đường Nguyễn Du, Văn Lâm',
+    district: 'Văn Lâm',
     fieldType: '5v5',
-    pricePerHour: 290000,
+    pricePerHour: 210000,
     images: [
       'https://images.unsplash.com/photo-1486286701208-1d58e9338013?w=800'
     ],
