@@ -45,3 +45,14 @@ export interface Booking {
   createdAt: string;
   fieldName?: string;
 }
+
+export interface Review {
+  id: string;
+  userId: string;
+  userName: string;
+  fieldId: string;
+  bookingId: string;
+  rating: number; // 1-5 stars
+  comment: string;
+  createdAt: string;
+}

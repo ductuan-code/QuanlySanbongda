@@ -1,4 +1,4 @@
-import { FootballField, TimeSlot, Booking } from '../types';
+import { FootballField, TimeSlot, Booking, Review } from '../types';
 
 export const mockFields: FootballField[] = [
   {
@@ -219,5 +219,88 @@ export const mockBookings: Booking[] = [
     status: 'confirmed',
     createdAt: '2026-03-20T10:00:00Z',
     fieldName: 'Sân Bóng Thể Thao Quận 1'
+  }
+];
+
+export const mockReviews: Review[] = [
+  {
+    id: 'r1',
+    userId: 'demo-user',
+    userName: 'User Demo',
+    fieldId: '1',
+    bookingId: 'b1',
+    rating: 5,
+    comment: 'Sân đẹp, cỏ mềm, chủ sân nhiệt tình. Sẽ quay lại lần sau!',
+    createdAt: '2026-03-26T10:00:00Z'
+  },
+  {
+    id: 'r2',
+    userId: 'user2',
+    userName: 'Nguyễn Văn A',
+    fieldId: '1',
+    bookingId: 'b2',
+    rating: 4,
+    comment: 'Sân tốt, giá hợp lý. Chỉ có điều bãi đỗ xe hơi nhỏ.',
+    createdAt: '2026-03-24T15:30:00Z'
+  },
+  {
+    id: 'r3',
+    userId: 'user3',
+    userName: 'Trần Thị B',
+    fieldId: '1',
+    bookingId: 'b3',
+    rating: 5,
+    comment: 'Rất hài lòng! Sân sạch sẽ, tiện nghi đầy đủ.',
+    createdAt: '2026-03-23T18:00:00Z'
+  },
+  {
+    id: 'r4',
+    userId: 'user4',
+    userName: 'Lê Văn C',
+    fieldId: '2',
+    bookingId: 'b4',
+    rating: 5,
+    comment: 'Sân rộng rãi, phù hợp cho đá 7v7. Đèn chiếu sáng tốt!',
+    createdAt: '2026-03-22T20:00:00Z'
+  },
+  {
+    id: 'r5',
+    userId: 'user5',
+    userName: 'Phạm Thị D',
+    fieldId: '2',
+    bookingId: 'b5',
+    rating: 4,
+    comment: 'Sân đẹp nhưng giá hơi cao so với khu vực.',
+    createdAt: '2026-03-21T16:00:00Z'
+  },
+  {
+    id: 'r6',
+    userId: 'user6',
+    userName: 'Hoàng Văn E',
+    fieldId: '3',
+    bookingId: 'b6',
+    rating: 4,
+    comment: 'Giá rẻ, chất lượng ổn. Phù hợp cho đá thường xuyên.',
+    createdAt: '2026-03-20T14:00:00Z'
+  },
+  {
+    id: 'r7',
+    userId: 'user7',
+    userName: 'Vũ Thị F',
+    fieldId: '7',
+    bookingId: 'b7',
+    rating: 5,
+    comment: 'Sân tuyệt vời! Có khán đài, rất phù hợp tổ chức giải đấu.',
+    createdAt: '2026-03-19T19:00:00Z'
+  },
+  {
+    id: 'r8',
+    userId: 'user8',
+    userName: 'Đỗ Văn G',
+    fieldId: '8',
+    bookingId: 'b8',
+    rating: 5,
+    comment: 'Sân mới, tiện nghi hiện đại. Rất đáng để thử!',
+    createdAt: '2026-03-18T17:30:00Z'
   }
 ];
