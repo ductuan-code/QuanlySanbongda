@@ -3,12 +3,22 @@ import { DollarOutlined, RiseOutlined, FallOutlined } from '@ant-design/icons';
 import { useBooking } from '../../contexts/BookingContext';
 import { mockFields } from '../../data/mockData';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useState, useEffect } from 'react';
+import { DashboardSkeleton } from '../../components/LoadingSkeleton';
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 
 export default function OwnerRevenue() {
   const { bookings } = useBooking();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Lấy sân của owner
   const myFields = mockFields.filter(f => f.ownerId === 'owner1');
@@ -49,6 +59,10 @@ export default function OwnerRevenue() {
     { time: '15-18h', revenue: 1500000, color: '#8b5cf6' },
     { time: '18-21h', revenue: 3200000, color: '#ef4444' },
   ];
+
+  if (loading) {
+    return <DashboardSkeleton />;
+  }
 
   return (
     <div>

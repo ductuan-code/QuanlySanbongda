@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Table, Button, Space, Tag, Select, DatePicker, message, Modal } from 'antd';
 import { EyeOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { useBooking } from '../../contexts/BookingContext';
 import { Booking } from '../../types';
 import dayjs from 'dayjs';
+import { BookingTableSkeleton } from '../../components/LoadingSkeleton';
 
 export default function ManageBookings() {
   const { bookings, cancelBooking } = useBooking();
@@ -11,6 +12,14 @@ export default function ManageBookings() {
   const [selectedDate, setSelectedDate] = useState<any>(null);
   const [detailModalVisible, setDetailModalVisible] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleViewDetail = (booking: Booking) => {
     setSelectedBooking(booking);
@@ -205,17 +214,21 @@ export default function ManageBookings() {
         </Button>
       </div>
 
-      <Table
-        columns={columns}
-        dataSource={filteredBookings}
-        rowKey="id"
-        scroll={{ x: 1400 }}
-        pagination={{
-          pageSize: 10,
-          showSizeChanger: true,
-          showTotal: (total) => `Tổng ${total} booking`
-        }}
-      />
+      {loading ? (
+        <BookingTableSkeleton />
+      ) : (
+        <Table
+          columns={columns}
+          dataSource={filteredBookings}
+          rowKey="id"
+          scroll={{ x: 1400 }}
+          pagination={{
+            pageSize: 10,
+            showSizeChanger: true,
+            showTotal: (total) => `Tổng ${total} booking`
+          }}
+        />
+      )}
 
       {/* Detail Modal */}
       <Modal

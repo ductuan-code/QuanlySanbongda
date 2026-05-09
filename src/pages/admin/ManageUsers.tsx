@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Table, Button, Space, Tag, Avatar, Input, Select, message, Switch } from 'antd';
 import { SearchOutlined, UserOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import { User } from '../../types';
+import { BookingTableSkeleton } from '../../components/LoadingSkeleton';
 
 const { Search } = Input;
 
@@ -39,6 +40,14 @@ export default function ManageUsers() {
 
   const [searchText, setSearchText] = useState('');
   const [filterRole, setFilterRole] = useState<string>('all');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleToggleStatus = (userId: string) => {
     message.success('Đã cập nhật trạng thái user');
@@ -189,16 +198,20 @@ export default function ManageUsers() {
         </Select>
       </div>
 
-      <Table
-        columns={columns}
-        dataSource={filteredUsers}
-        rowKey="id"
-        pagination={{
-          pageSize: 10,
-          showSizeChanger: true,
-          showTotal: (total) => `Tổng ${total} người dùng`
-        }}
-      />
+      {loading ? (
+        <BookingTableSkeleton />
+      ) : (
+        <Table
+          columns={columns}
+          dataSource={filteredUsers}
+          rowKey="id"
+          pagination={{
+            pageSize: 10,
+            showSizeChanger: true,
+            showTotal: (total) => `Tổng ${total} người dùng`
+          }}
+        />
+      )}
     </div>
   );
 }

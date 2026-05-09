@@ -1,11 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Row, Col, Typography, Tag, Button, message, Divider, Card } from 'antd';
 import { mockFields, mockTimeSlots, mockReviews } from '../data/mockData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TimeSlotTable from '../components/TimeSlotTable';
 import BookingModal from '../components/BookingModal';
 import ReviewList from '../components/ReviewList';
 import ReviewForm from '../components/ReviewForm';
+import { FieldDetailSkeleton } from '../components/LoadingSkeleton';
 import { Review } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 import { useBooking } from '../contexts/BookingContext';
@@ -20,6 +21,7 @@ export default function FieldDetailPage() {
   const { bookings, addBooking } = useBooking();
   const [modalVisible, setModalVisible] = useState(false);
   const [reviews, setReviews] = useState<Review[]>(mockReviews.filter(r => r.fieldId === id));
+  const [loading, setLoading] = useState(true);
   
   // Custom hook quản lý booking selection
   const {
@@ -31,7 +33,20 @@ export default function FieldDetailPage() {
     hasSelection
   } = useBookingSelection();
 
+  // Simulate loading data
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [id]);
+
   const field = mockFields.find(f => f.id === id);
+
+  if (loading) {
+    return <FieldDetailSkeleton />;
+  }
 
   if (!field) {
     return <div>Không tìm thấy sân bóng</div>;

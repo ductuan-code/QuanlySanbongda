@@ -9,11 +9,21 @@ import {
 import { useBooking } from '../../contexts/BookingContext';
 import { mockFields } from '../../data/mockData';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useState, useEffect } from 'react';
+import { DashboardSkeleton } from '../../components/LoadingSkeleton';
 
 const { Title, Text } = Typography;
 
 export default function AdminDashboard() {
   const { bookings } = useBooking();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Tính toán stats
   const totalBookings = bookings.length;
@@ -103,6 +113,10 @@ export default function AdminDashboard() {
       }
     }
   ];
+
+  if (loading) {
+    return <DashboardSkeleton />;
+  }
 
   return (
     <div>

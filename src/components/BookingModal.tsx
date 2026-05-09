@@ -1,5 +1,6 @@
 import { Modal, Descriptions, Button, message, Divider } from 'antd';
 import { TimeSlot, FootballField } from '../types';
+import { useState } from 'react';
 
 interface BookingModalProps {
   visible: boolean;
@@ -16,6 +17,8 @@ export default function BookingModal({
   field,
   onConfirm 
 }: BookingModalProps) {
+  const [loading, setLoading] = useState(false);
+
   if (timeSlots.length === 0 || !field) return null;
 
   // Tính tổng giá
@@ -30,13 +33,20 @@ export default function BookingModal({
   const startTime = sortedSlots[0].startTime;
   const endTime = sortedSlots[sortedSlots.length - 1].endTime;
 
-  const handleConfirm = () => {
-    onConfirm();
-    message.success({
-      content: `Đặt sân thành công ${timeSlots.length} khung giờ!`,
-      duration: 3
-    });
-    onClose();
+  const handleConfirm = async () => {
+    setLoading(true);
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      onConfirm();
+      message.success({
+        content: `Đặt sân thành công ${timeSlots.length} khung giờ!`,
+        duration: 3
+      });
+      onClose();
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,7 +59,7 @@ export default function BookingModal({
       open={visible}
       onCancel={onClose}
       footer={[
-        <Button key="cancel" onClick={onClose} size="large">
+        <Button key="cancel" onClick={onClose} size="large" disabled={loading}>
           Hủy
         </Button>,
         <Button 
@@ -57,6 +67,7 @@ export default function BookingModal({
           type="primary" 
           onClick={handleConfirm}
           size="large"
+          loading={loading}
         >
           Xác nhận đặt sân
         </Button>

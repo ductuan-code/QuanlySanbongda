@@ -10,12 +10,22 @@ import { useBooking } from '../../contexts/BookingContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { mockFields } from '../../data/mockData';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useState, useEffect } from 'react';
+import { DashboardSkeleton } from '../../components/LoadingSkeleton';
 
 const { Title, Text } = Typography;
 
 export default function OwnerDashboard() {
   const { bookings } = useBooking();
   const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Lấy sân của owner (giả sử owner1 sở hữu tất cả sân trong mock)
   const myFields = mockFields.filter(f => f.ownerId === 'owner1');
@@ -95,6 +105,10 @@ export default function OwnerDashboard() {
       }
     }
   ];
+
+  if (loading) {
+    return <DashboardSkeleton />;
+  }
 
   return (
     <div>

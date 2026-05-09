@@ -2,6 +2,8 @@ import { Table, Tag, Button, Typography, message, Empty } from 'antd';
 import { useAuth } from '../contexts/AuthContext';
 import { useBooking } from '../contexts/BookingContext';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BookingTableSkeleton } from '../components/LoadingSkeleton';
 
 const { Title } = Typography;
 
@@ -9,6 +11,18 @@ export default function MyBookingsPage() {
   const { user, isAuthenticated } = useAuth();
   const { bookings, cancelBooking } = useBooking();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading data
+  useEffect(() => {
+    if (isAuthenticated) {
+      setLoading(true);
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [isAuthenticated]);
 
   // Nếu chưa đăng nhập
   if (!isAuthenticated) {
@@ -100,7 +114,9 @@ export default function MyBookingsPage() {
     <div>
       <Title level={2}>Lịch Đặt Sân Của Tôi</Title>
       
-      {userBookings.length === 0 ? (
+      {loading ? (
+        <BookingTableSkeleton />
+      ) : userBookings.length === 0 ? (
         <Empty 
           description="Bạn chưa có lịch đặt sân nào"
           style={{ marginTop: 60 }}

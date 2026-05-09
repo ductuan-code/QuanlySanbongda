@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Table, Button, Space, Tag, Select, message, Modal } from 'antd';
 import { CheckOutlined, CloseOutlined, EyeOutlined } from '@ant-design/icons';
 import { useBooking } from '../../contexts/BookingContext';
 import { mockFields } from '../../data/mockData';
 import { Booking } from '../../types';
+import { BookingTableSkeleton } from '../../components/LoadingSkeleton';
 
 export default function OwnerBookings() {
   const { bookings, cancelBooking } = useBooking();
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [detailModalVisible, setDetailModalVisible] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Lấy sân của owner
   const myFields = mockFields.filter(f => f.ownerId === 'owner1');
@@ -177,17 +186,21 @@ export default function OwnerBookings() {
         </Select>
       </div>
 
-      <Table
-        columns={columns}
-        dataSource={filteredBookings}
-        rowKey="id"
-        scroll={{ x: 1200 }}
-        pagination={{
-          pageSize: 10,
-          showSizeChanger: true,
-          showTotal: (total) => `Tổng ${total} booking`
-        }}
-      />
+      {loading ? (
+        <BookingTableSkeleton />
+      ) : (
+        <Table
+          columns={columns}
+          dataSource={filteredBookings}
+          rowKey="id"
+          scroll={{ x: 1200 }}
+          pagination={{
+            pageSize: 10,
+            showSizeChanger: true,
+            showTotal: (total) => `Tổng ${total} booking`
+          }}
+        />
+      )}
 
       {/* Detail Modal */}
       <Modal

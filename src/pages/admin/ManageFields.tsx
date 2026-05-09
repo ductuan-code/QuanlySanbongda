@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Table, Button, Space, Tag, Modal, Form, Input, Select, InputNumber, message, Popconfirm } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { mockFields } from '../../data/mockData';
 import { FootballField } from '../../types';
+import { BookingTableSkeleton } from '../../components/LoadingSkeleton';
 
 const { TextArea } = Input;
 
@@ -10,7 +11,15 @@ export default function ManageFields() {
   const [fields, setFields] = useState<FootballField[]>(mockFields);
   const [modalVisible, setModalVisible] = useState(false);
   const [editingField, setEditingField] = useState<FootballField | null>(null);
+  const [loading, setLoading] = useState(true);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAdd = () => {
     setEditingField(null);
@@ -171,17 +180,21 @@ export default function ManageFields() {
         </Button>
       </div>
 
-      <Table
-        columns={columns}
-        dataSource={fields}
-        rowKey="id"
-        scroll={{ x: 1200 }}
-        pagination={{
-          pageSize: 10,
-          showSizeChanger: true,
-          showTotal: (total) => `Tổng ${total} sân`
-        }}
-      />
+      {loading ? (
+        <BookingTableSkeleton />
+      ) : (
+        <Table
+          columns={columns}
+          dataSource={fields}
+          rowKey="id"
+          scroll={{ x: 1200 }}
+          pagination={{
+            pageSize: 10,
+            showSizeChanger: true,
+            showTotal: (total) => `Tổng ${total} sân`
+          }}
+        />
+      )}
 
       {/* Modal Add/Edit */}
       <Modal

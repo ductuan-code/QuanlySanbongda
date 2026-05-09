@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Form, Input, Button, Avatar, Typography, Row, Col, Tabs, message, Divider } from 'antd';
 import { UserOutlined, MailOutlined, PhoneOutlined, LockOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons';
 import { useAuth } from '../contexts/AuthContext';
 import { useBooking } from '../contexts/BookingContext';
+import { PageLoading } from '../components/LoadingSkeleton';
 
 const { Title, Text } = Typography;
 const { TabPane } = Tabs;
@@ -11,7 +12,15 @@ export default function ProfilePage() {
   const { user } = useAuth();
   const { getBookingsByUser } = useBooking();
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const userBookings = user ? getBookingsByUser(user.id) : [];
 
@@ -38,6 +47,10 @@ export default function ProfilePage() {
 
   if (!user) {
     return null;
+  }
+
+  if (loading) {
+    return <PageLoading />;
   }
 
   return (

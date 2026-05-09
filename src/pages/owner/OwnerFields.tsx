@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Row, Col, Typography, Tag, Button, Switch, Modal, Form, Input, InputNumber, Select, message } from 'antd';
 import { EditOutlined, PlusOutlined, EyeOutlined } from '@ant-design/icons';
 import { mockFields } from '../../data/mockData';
 import { FootballField } from '../../types';
+import { FieldListSkeleton } from '../../components/LoadingSkeleton';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -13,7 +14,15 @@ export default function OwnerFields() {
   );
   const [modalVisible, setModalVisible] = useState(false);
   const [editingField, setEditingField] = useState<FootballField | null>(null);
+  const [loading, setLoading] = useState(true);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAdd = () => {
     setEditingField(null);
@@ -82,8 +91,11 @@ export default function OwnerFields() {
         </Button>
       </div>
 
-      <Row gutter={[24, 24]}>
-        {fields.map(field => (
+      {loading ? (
+        <FieldListSkeleton />
+      ) : (
+        <Row gutter={[24, 24]}>
+          {fields.map(field => (
           <Col xs={24} md={12} lg={8} key={field.id}>
             <Card
               cover={
@@ -154,6 +166,7 @@ export default function OwnerFields() {
           </Col>
         ))}
       </Row>
+      )}
 
       {/* Modal Add/Edit */}
       <Modal
