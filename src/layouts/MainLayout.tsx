@@ -32,12 +32,15 @@ export default function MainLayout() {
       label: 'Thông tin cá nhân',
       onClick: () => navigate('/profile')
     },
-    {
-      key: 'my-bookings',
-      icon: <CalendarOutlined />,
-      label: 'Lịch đặt của tôi',
-      onClick: () => navigate('/my-bookings')
-    },
+    // Chỉ hiển thị "Lịch đặt của tôi" cho User thường
+    ...(!isOwner && !isAdmin ? [
+      {
+        key: 'my-bookings',
+        icon: <CalendarOutlined />,
+        label: 'Lịch đặt của tôi',
+        onClick: () => navigate('/my-bookings')
+      }
+    ] : []),
     ...(isOwner || isAdmin ? [
       {
         type: 'divider' as const,
@@ -72,7 +75,10 @@ export default function MainLayout() {
   const menuItems = [
     { key: '/', label: 'Trang chủ', icon: <HomeOutlined /> },
     { key: '/fields', label: 'Danh sách sân', icon: <UnorderedListOutlined /> },
-    { key: '/my-bookings', label: 'Lịch đặt', icon: <CalendarOutlined /> },
+    // Chỉ hiển thị "Lịch đặt" cho User thường, không hiển thị cho Owner/Admin
+    ...(!isOwner && !isAdmin ? [
+      { key: '/my-bookings', label: 'Lịch đặt', icon: <CalendarOutlined /> }
+    ] : []),
   ];
 
   return (
