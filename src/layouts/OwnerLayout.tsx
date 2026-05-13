@@ -151,11 +151,12 @@ export default function OwnerLayout() {
         </Header>
 
         <Content style={{
-          margin: '32px',
-          padding: '32px',
+          margin: '24px',
+          padding: '24px',
           background: 'white',
           borderRadius: 16,
-          minHeight: 'calc(100vh - 128px)'
+          minHeight: 'calc(100vh - 128px)',
+          overflow: 'auto'
         }}>
           <Outlet />
         </Content>

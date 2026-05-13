@@ -2,6 +2,7 @@ import { Input, Card, Row, Col, Typography, Button, Select, DatePicker, Avatar }
 import { SearchOutlined, EnvironmentOutlined, CalendarOutlined, FireOutlined, ThunderboltOutlined, SafetyOutlined, CreditCardOutlined, CustomerServiceOutlined, CheckCircleOutlined, StarFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { mockFields } from '../data/mockData';
+import Footer from '../components/Footer';
 
 const { Title, Text } = Typography;
 
@@ -329,70 +330,70 @@ export default function HomePage() {
             <Col xs={12} sm={12} md={6}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: 20,
+                  width: 'clamp(60px, 15vw, 80px)',
+                  height: 'clamp(60px, 15vw, 80px)',
+                  borderRadius: 16,
                   background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  margin: '0 auto 20px',
+                  margin: '0 auto 16px',
                   boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)'
                 }}>
-                  <SafetyOutlined style={{ fontSize: 36, color: 'white' }} />
+                  <SafetyOutlined style={{ fontSize: 'clamp(24px, 5vw, 36px)', color: 'white' }} />
                 </div>
-                <Title level={4} style={{ marginBottom: 12, fontSize: 18 }}>
+                <Title level={4} style={{ marginBottom: 8, fontSize: 'clamp(14px, 2.5vw, 18px)' }}>
                   An toàn & Bảo mật
                 </Title>
-                <Text type="secondary" style={{ fontSize: 14 }}>
+                <Text type="secondary" style={{ fontSize: 'clamp(12px, 2vw, 14px)' }}>
                   Thông tin được mã hóa và bảo vệ tuyệt đối
                 </Text>
               </div>
             </Col>
 
-            <Col xs={24} sm={12} md={6}>
+            <Col xs={12} sm={12} md={6}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: 20,
+                  width: 'clamp(60px, 15vw, 80px)',
+                  height: 'clamp(60px, 15vw, 80px)',
+                  borderRadius: 16,
                   background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  margin: '0 auto 20px',
+                  margin: '0 auto 16px',
                   boxShadow: '0 10px 30px rgba(245, 158, 11, 0.3)'
                 }}>
-                  <CreditCardOutlined style={{ fontSize: 36, color: 'white' }} />
+                  <CreditCardOutlined style={{ fontSize: 'clamp(24px, 5vw, 36px)', color: 'white' }} />
                 </div>
-                <Title level={4} style={{ marginBottom: 12, fontSize: 18 }}>
+                <Title level={4} style={{ marginBottom: 8, fontSize: 'clamp(14px, 2.5vw, 18px)' }}>
                   Thanh toán linh hoạt
                 </Title>
-                <Text type="secondary" style={{ fontSize: 14 }}>
+                <Text type="secondary" style={{ fontSize: 'clamp(12px, 2vw, 14px)' }}>
                   Hỗ trợ nhiều hình thức thanh toán tiện lợi
                 </Text>
               </div>
             </Col>
 
-            <Col xs={24} sm={12} md={6}>
+            <Col xs={12} sm={12} md={6}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: 20,
+                  width: 'clamp(60px, 15vw, 80px)',
+                  height: 'clamp(60px, 15vw, 80px)',
+                  borderRadius: 16,
                   background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  margin: '0 auto 20px',
+                  margin: '0 auto 16px',
                   boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)'
                 }}>
-                  <CustomerServiceOutlined style={{ fontSize: 36, color: 'white' }} />
+                  <CustomerServiceOutlined style={{ fontSize: 'clamp(24px, 5vw, 36px)', color: 'white' }} />
                 </div>
-                <Title level={4} style={{ marginBottom: 12, fontSize: 18 }}>
+                <Title level={4} style={{ marginBottom: 8, fontSize: 'clamp(14px, 2.5vw, 18px)' }}>
                   Hỗ trợ 24/7
                 </Title>
-                <Text type="secondary" style={{ fontSize: 14 }}>
+                <Text type="secondary" style={{ fontSize: 'clamp(12px, 2vw, 14px)' }}>
                   Đội ngũ chăm sóc khách hàng luôn sẵn sàng
                 </Text>
               </div>
@@ -661,6 +662,9 @@ export default function HomePage() {
           </div>
         </Card>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

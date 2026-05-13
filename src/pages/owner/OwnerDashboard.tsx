@@ -111,14 +111,14 @@ export default function OwnerDashboard() {
   }
 
   return (
-    <div>
+    <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
       <div style={{ marginBottom: 32 }}>
         <Title level={2} style={{ margin: 0 }}>Dashboard Chủ Sân</Title>
         <Text type="secondary">Tổng quan hoạt động kinh doanh</Text>
       </div>
 
       {/* Stats Cards */}
-      <Row gutter={[24, 24]}>
+      <Row gutter={[16, 16]}>
         <Col xs={24} sm={12} lg={6}>
           <Card style={{ borderRadius: 16 }}>
             <Statistic
@@ -160,8 +160,9 @@ export default function OwnerDashboard() {
               title="Doanh Thu"
               value={totalRevenue}
               prefix={<DollarOutlined style={{ color: '#10B981' }} />}
-              suffix="đ"
+              valueStyle={{ fontSize: '20px' }}
             />
+            <div style={{ fontSize: '14px', color: '#666', marginTop: 4 }}>VNĐ</div>
           </Card>
         </Col>
       </Row>
@@ -169,7 +170,7 @@ export default function OwnerDashboard() {
       {/* Revenue Chart */}
       <Card 
         title="Doanh thu 7 ngày qua" 
-        style={{ marginTop: 24, borderRadius: 16 }}
+        style={{ marginTop: 16, borderRadius: 16 }}
       >
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={revenueData}>
@@ -199,7 +200,7 @@ export default function OwnerDashboard() {
       {/* Recent Bookings */}
       <Card 
         title="Booking Gần Đây" 
-        style={{ marginTop: 24, borderRadius: 16 }}
+        style={{ marginTop: 16, borderRadius: 16 }}
       >
         <Table
           dataSource={recentBookings}
