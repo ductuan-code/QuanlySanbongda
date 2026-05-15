@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" fill="none">
+  <rect width="1200" height="700" fill="#0F7A43"/>
+  <rect x="30" y="30" width="1140" height="640" rx="24" stroke="#E8FFF0" stroke-width="10"/>
+  <line x1="600" y1="30" x2="600" y2="670" stroke="#E8FFF0" stroke-width="10"/>
+  <circle cx="600" cy="350" r="90" stroke="#E8FFF0" stroke-width="10"/>
+  <circle cx="600" cy="350" r="8" fill="#E8FFF0"/>
+  <rect x="30" y="210" width="140" height="280" stroke="#E8FFF0" stroke-width="10"/>
+  <rect x="1030" y="210" width="140" height="280" stroke="#E8FFF0" stroke-width="10"/>
+  <rect x="30" y="270" width="55" height="160" stroke="#E8FFF0" stroke-width="10"/>
+  <rect x="1115" y="270" width="55" height="160" stroke="#E8FFF0" stroke-width="10"/>
+  <circle cx="140" cy="350" r="8" fill="#E8FFF0"/>
+  <circle cx="1060" cy="350" r="8" fill="#E8FFF0"/>
+  <path d="M120 350C120 283.726 173.726 230 240 230" stroke="#E8FFF0" stroke-width="10"/>
+  <path d="M1080 350C1080 283.726 1026.27 230 960 230" stroke="#E8FFF0" stroke-width="10"/>
+  <text x="600" y="620" text-anchor="middle" fill="#E8FFF0" font-family="Arial, sans-serif" font-size="48" font-weight="700">Football Field</text>
+</svg>
