@@ -1,16 +1,17 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { Row, Col, Typography, Tag, Button, message, Divider, Card } from 'antd';
-import { mockFields, mockTimeSlots, mockReviews } from '../data/mockData';
-import { useState, useEffect } from 'react';
+import { Row, Col, Typography, Tag, Button, message, Divider, Card, Alert, DatePicker } from 'antd';
+import { useState } from 'react';
+import dayjs from 'dayjs';
 import TimeSlotTable from '../components/TimeSlotTable';
 import BookingModal from '../components/BookingModal';
 import ReviewList from '../components/ReviewList';
 import ReviewForm from '../components/ReviewForm';
 import { FieldDetailSkeleton } from '../components/LoadingSkeleton';
-import { Review } from '../types';
+import { Review, TimeSlot } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 import { useBooking } from '../contexts/BookingContext';
 import { useBookingSelection } from '../hooks/useBookingSelection';
+import { useFieldDetail, useFieldSchedule } from '../hooks/useFields';
 
 const { Title, Text } = Typography;
 
@@ -20,8 +21,10 @@ export default function FieldDetailPage() {
   const { user, isAuthenticated } = useAuth();
   const { bookings, addBooking } = useBooking();
   const [modalVisible, setModalVisible] = useState(false);
-  const [reviews, setReviews] = useState<Review[]>(mockReviews.filter(r => r.fieldId === id));
-  const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(dayjs().format('YYYY-MM-DD'));
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const { field, loading, error } = useFieldDetail(id || '');
+  const { schedule, loading: scheduleLoading, error: scheduleError } = useFieldSchedule(id || '', selectedDate);
   
   // Custom hook quản lý booking selection
   const {
@@ -33,31 +36,36 @@ export default function FieldDetailPage() {
     hasSelection
   } = useBookingSelection();
 
-  // Simulate loading data
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [id]);
-
-  const field = mockFields.find(f => f.id === id);
 
   if (loading) {
     return <FieldDetailSkeleton />;
+  }
+
+  if (error) {
+    return <Alert type="error" message={error} />;
   }
 
   if (!field) {
     return <div>Không tìm thấy sân bóng</div>;
   }
 
-  const timeSlots = mockTimeSlots.filter(ts => ts.fieldId === id);
+  const timeSlots: TimeSlot[] = schedule.map((slot: any, index: number) => ({
+    id: [id, selectedDate, slot.startTime, index].join('-'),
+    fieldId: id || '',
+    date: selectedDate,
+    startTime: slot.startTime,
+    endTime: slot.endTime,
+    price: slot.price,
+    status: slot.status === 'AVAILABLE' ? 'available' : 'booked',
+  }));
   
   // Lấy danh sách slot đã được đặt
-  const bookedSlotIds = bookings
-    .filter(b => b.fieldId === id && b.status !== 'cancelled')
-    .map(b => b.timeSlotId);
+  const bookedSlotIds = [
+    ...bookings
+      .filter(b => b.fieldId === id && b.status !== 'cancelled')
+      .map(b => b.timeSlotId),
+    ...timeSlots.filter(slot => slot.status !== 'available').map(slot => slot.id),
+  ];
 
   // Mở modal xác nhận
   const handleOpenModal = () => {
@@ -79,12 +87,12 @@ export default function FieldDetailPage() {
   const handleConfirmBooking = async () => {
     if (!user) return;
 
-    const selectedDate = new Date().toISOString().split('T')[0];
+    const sortedSlots = [...selectedSlots].sort((a, b) => a.startTime.localeCompare(b.startTime));
     const bookingData = {
       fieldId: parseInt(field.id),
       bookingDate: selectedDate,
-      startTime: selectedSlots[0].startTime,
-      endTime: selectedSlots[selectedSlots.length - 1].endTime,
+      startTime: sortedSlots[0].startTime,
+      endTime: sortedSlots[sortedSlots.length - 1].endTime,
       note: 'Đặt sân từ website'
     };
     
@@ -127,9 +135,9 @@ export default function FieldDetailPage() {
       <Row gutter={[24, 24]}>
         <Col xs={24} md={12}>
           <img 
-            src={field.images[0]}
+            src={field.images[0] || '/san-bong-da-truong-an.png'}
             alt={field.name}
-            style={{ width: '100%', borderRadius: 8 }}
+            style={{ width: '100%', borderRadius: 8 }} onError={(e) => { e.currentTarget.src = '/san-bong-da-truong-an.png'; }}
           />
         </Col>
         
@@ -154,7 +162,7 @@ export default function FieldDetailPage() {
 
           <div style={{ marginTop: 16 }}>
             <Title level={5}>Tiện nghi:</Title>
-            {field.amenities.map((amenity, index) => (
+            {field.amenities.length > 0 && field.amenities.map((amenity, index) => (
               <Tag key={index}>{amenity}</Tag>
             ))}
           </div>
@@ -169,8 +177,17 @@ export default function FieldDetailPage() {
           marginBottom: 16 
         }}>
           <Title level={3} style={{ margin: 0 }}>
-            Lịch Trống - Ngày 25/03/2026
+            Lịch Trống - {dayjs(selectedDate).format('DD/MM/YYYY')}
           </Title>
+          
+          <DatePicker
+            value={dayjs(selectedDate)}
+            onChange={(date) => {
+              clearSelection();
+              setSelectedDate((date || dayjs()).format('YYYY-MM-DD'));
+            }}
+            format="DD/MM/YYYY"
+          />
           
           {hasSelection && (
             <Button 
@@ -183,7 +200,12 @@ export default function FieldDetailPage() {
           )}
         </div>
 
-        <TimeSlotTable 
+        {scheduleError && <Alert type="error" message={scheduleError} style={{ marginBottom: 16 }} />}
+
+        {scheduleLoading ? (
+          <FieldDetailSkeleton />
+        ) : (
+          <TimeSlotTable 
           timeSlots={timeSlots}
           selectedSlots={selectedSlots}
           bookedSlotIds={bookedSlotIds}
@@ -191,6 +213,7 @@ export default function FieldDetailPage() {
           isSlotDisabled={isSlotDisabled}
           onSelectSlot={toggleSlot}
         />
+        )}
       </div>
 
       <BookingModal

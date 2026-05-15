@@ -1,36 +1,30 @@
-import { Card, Row, Col, Select, Typography, Tag } from 'antd';
+import { Card, Row, Col, Select, Typography, Tag, Alert, Empty } from 'antd';
 import { Link } from 'react-router-dom';
-import { mockFields } from '../data/mockData';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FieldListSkeleton } from '../components/LoadingSkeleton';
+import { useFields } from '../hooks/useFields';
 
 const { Title } = Typography;
+
+const fieldTypeMap: Record<string, number | undefined> = {
+  all: undefined,
+  '5v5': 1,
+  '7v7': 2,
+  '11v11': 3,
+};
 
 export default function FieldListPage() {
   const [district, setDistrict] = useState<string>('all');
   const [fieldType, setFieldType] = useState<string>('all');
-  const [loading, setLoading] = useState(true);
-
-  // Simulate loading data
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 800); // Simulate API call
-    return () => clearTimeout(timer);
-  }, [district, fieldType]);
-
-  const filteredFields = mockFields.filter(field => {
-    if (district !== 'all' && field.district !== district) return false;
-    if (fieldType !== 'all' && field.fieldType !== fieldType) return false;
-    return true;
+  const { fields, loading, error } = useFields({
+    district: district === 'all' ? undefined : district,
+    fieldType: fieldTypeMap[fieldType],
   });
 
   return (
     <div>
       <Title level={2}>Danh Sách Sân Bóng</Title>
       
-      {/* Filters */}
       <div style={{ marginBottom: 24, display: 'flex', gap: 16 }}>
         <Select
           style={{ width: 200 }}
@@ -64,12 +58,15 @@ export default function FieldListPage() {
         </Select>
       </div>
 
-      {/* Field List */}
+      {error && <Alert type="error" message={error} style={{ marginBottom: 16 }} />}
+
       {loading ? (
         <FieldListSkeleton />
+      ) : fields.length === 0 ? (
+        <Empty description="Không có sân phù hợp" />
       ) : (
         <Row gutter={[16, 16]}>
-          {filteredFields.map(field => (
+          {fields.map(field => (
             <Col xs={24} sm={12} md={8} key={field.id}>
               <Link to={`/fields/${field.id}`}>
                 <Card
@@ -77,8 +74,8 @@ export default function FieldListPage() {
                   cover={
                     <img 
                       alt={field.name}
-                      src={field.images[0]}
-                      style={{ height: 200, objectFit: 'cover' }}
+                      src={field.images[0] || '/san-bong-da-truong-an.png'}
+                      style={{ height: 200, objectFit: 'cover' }} onError={(e) => { e.currentTarget.src = '/san-bong-da-truong-an.png'; }}
                     />
                   }
                 >

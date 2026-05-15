@@ -27,11 +27,11 @@ export function useFields(params?: UseFieldsParams) {
           address: field.address,
           district: field.district,
           fieldType: field.fieldType === 1 ? '5v5' : field.fieldType === 2 ? '7v7' : '11v11',
-          pricePerHour: field.priceRules?.[0]?.pricePerHour || 200000,
+          pricePerHour: field.pricePerHour || 200000,
           images: field.images || [],
           description: field.description || '',
           amenities: [],
-          rating: 4.5, // Mock rating
+          rating: field.averageRating || 0,
           ownerId: field.ownerId?.toString() || ''
         }));
         setFields(mappedFields);
@@ -77,11 +77,11 @@ export function useFieldDetail(fieldId: string) {
           address: fieldData.address,
           district: fieldData.district,
           fieldType: fieldData.fieldType === 1 ? '5v5' : fieldData.fieldType === 2 ? '7v7' : '11v11',
-          pricePerHour: fieldData.priceRules?.[0]?.pricePerHour || 200000,
+          pricePerHour: fieldData.pricePerHour || 200000,
           images: fieldData.images || [],
           description: fieldData.description || '',
           amenities: [],
-          rating: 4.5, // Mock rating
+          rating: fieldData.averageRating || 0,
           ownerId: fieldData.ownerId?.toString() || ''
         };
         setField(mappedField);
@@ -120,7 +120,7 @@ export function useFieldSchedule(fieldId: string, date: string) {
       const response = await fieldsAPI.getFieldSchedule(fieldId, date);
       
       if (response.success) {
-        setSchedule(response.data.availableSlots || []);
+        setSchedule(response.data.timeSlots || []);
       }
     } catch (err: any) {
       console.error('Failed to load schedule:', err);
