@@ -9,19 +9,23 @@ const { Title } = Typography;
 
 export default function MyBookingsPage() {
   const { user, isAuthenticated } = useAuth();
-  const { bookings, cancelBooking } = useBooking();
+  const { bookings, cancelBooking, refreshBookings, loading: bookingsLoading } = useBooking();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  // Simulate loading data
   useEffect(() => {
-    if (isAuthenticated) {
-      setLoading(true);
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 800);
-      return () => clearTimeout(timer);
+    if (!isAuthenticated) {
+      setLoading(false);
+      return;
     }
+
+    const loadBookings = async () => {
+      setLoading(true);
+      await refreshBookings();
+      setLoading(false);
+    };
+
+    loadBookings();
   }, [isAuthenticated]);
 
   // Nếu chưa đăng nhập
@@ -98,7 +102,7 @@ export default function MyBookingsPage() {
       title: 'Hành động',
       key: 'action',
       render: (_: any, record: any) => (
-        record.status === 'confirmed' && (
+        (record.status === 'pending' || record.status === 'confirmed') && (
           <Button 
             danger
             onClick={() => handleCancel(record.id)}
@@ -114,7 +118,7 @@ export default function MyBookingsPage() {
     <div>
       <Title level={2}>Lịch Đặt Sân Của Tôi</Title>
       
-      {loading ? (
+      {loading || bookingsLoading ? (
         <BookingTableSkeleton />
       ) : userBookings.length === 0 ? (
         <Empty 

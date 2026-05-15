@@ -70,7 +70,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       if (response.success) {
         const newBooking: Booking = {
           id: response.data.id.toString(),
-          userId: '', // Will be filled by refresh
+          userId: response.data.userId?.toString() || '',
           fieldId: response.data.fieldId.toString(),
           timeSlotId: response.data.id.toString(),
           date: response.data.bookingDate,
@@ -83,6 +83,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
         };
         
         setBookings(prev => [newBooking, ...prev]);
+        await refreshBookings();
         message.success('Đặt sân thành công!');
         return true;
       } else {
