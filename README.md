@@ -97,9 +97,11 @@ Thiết lập giá mặc định
 
 
 ## Công nghệ sử dụng
-- Frontend: HTML, CSS, JavaScript  
-- Backend: ASP.NET  
-- Database: SQL Server  
+- Frontend: React 19 + TypeScript, Ant Design (UI), React Router (định tuyến), Axios (gọi API), Recharts (biểu đồ)
+- Backend: ASP.NET Core Web API (kiến trúc 3 lớp: Controller - BLL/Service - DAL), Entity Framework Core
+- Xác thực: JWT (JSON Web Token), phân quyền theo vai trò
+- Database: SQL Server
+
 
 ## Hướng phát triển trong tương lai
 - Tích hợp thanh toán trực tuyến  

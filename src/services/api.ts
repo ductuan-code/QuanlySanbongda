@@ -146,6 +146,12 @@ export const ownerAPI = {
     return response.data;
   },
 
+  updateField: async (id: string, fieldData: any) => {
+    const response = await api.put(`/owner/fields/${id}`, fieldData);
+    return response.data;
+  },
+
+
   getMyFields: async () => {
     const response = await api.get('/owner/fields');
     return response.data;
